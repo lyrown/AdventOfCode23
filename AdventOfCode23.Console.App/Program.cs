@@ -1,6 +1,7 @@
 ﻿using AdventOfCode23.Console.App.Helpers;
 using Spectre.Console;
-using Days = AdventOfCode23.Console.App.Solutions;
+
+using Day1 = AdventOfCode23.Console.App.Solutions.Day1;
 
 AnsiConsole.Write(
     new FigletText("Advent Of Code 23")
@@ -13,7 +14,7 @@ table.AddColumn("Day");
 table.AddColumn("Solution");
 
 // Day 1
-var calibrationValue = Days.Day1.PuzzleSolution.GetPuzzleResponse();
-table.InsertDay(1, $"Total calibration value: {calibrationValue}");
+table.InsertDay(1, Day1.Part1.Solution() + "\n" + Day1.Part2.Solution());
+
 
 AnsiConsole.Write(table);

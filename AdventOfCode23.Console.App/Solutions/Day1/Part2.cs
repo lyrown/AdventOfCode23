@@ -18,7 +18,7 @@ internal static class Part2
                 "nine"
             };
 
-    public static string Solution()
+    public static string GetSolution()
     {
         var inputFilePath = FileHelpers.InputPath(nameof(Day1), "Input.txt");
         var totalCalibrationValue = 0;

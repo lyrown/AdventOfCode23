@@ -2,7 +2,6 @@
 
 using Helpers;
 using Services;
-using System.Text.RegularExpressions;
 
 public static class Part1
 {
@@ -46,8 +45,8 @@ public static class Part1
                 var bluePicks = handpickCubeColors.Find(hp => hp.Token == CubeColorToken.Blue)?.NumberOfCubes ?? 0;
 
                 // Check if handpicks are within the allowed limits
-                if (redPicks > maxNumberOfRedCubes 
-                    || greenPicks > maxNumberOfGreenCubes 
+                if (redPicks > maxNumberOfRedCubes
+                    || greenPicks > maxNumberOfGreenCubes
                     || bluePicks > maxNumberOfBlueCubes)
                 {
                     isHandpickOutOfLimits = true;
@@ -57,7 +56,7 @@ public static class Part1
 
             if (!isHandpickOutOfLimits)
             {
-                validHandGameSetIds.Add(index+1);
+                validHandGameSetIds.Add(index + 1);
             }
 
             index += 1;
@@ -65,33 +64,4 @@ public static class Part1
 
         return $"Part 1: {validHandGameSetIds.Sum()}";
     }
-
-    #region Input
-
-    private enum CubeColorToken
-    {
-        Red,
-        Green,
-        Blue
-    }
-
-    #endregion
-
-    #region Tokenizer
-
-    private sealed class CubeColorTokenizerService : TokenizerService<CubeColorToken, CubeColorTokenMatch>
-    {
-        public CubeColorTokenizerService(string regexPattern, CubeColorToken token) : base(regexPattern, token) { }
-    }
-
-    private sealed class CubeColorTokenMatch : ITokenizerMatchResponse<CubeColorToken>
-    {
-        public CubeColorToken Token { get; set; }
-
-        public string Value { get; set; }
-
-        public int NumberOfCubes => Int32.Parse(Regex.Match(Value, @"\d+").Value);
-    }
-
-    #endregion
 }

@@ -2,7 +2,7 @@
 
 namespace AdventOfCode23.Console.App.Solutions.Day3;
 
-public class Part1
+public class Part2
 {
     public static string GetSolution()
     {
@@ -20,7 +20,12 @@ public class Part1
                 if (rowChar.IsSpecialChar())
                 {
                     var numbers = findNumbersAround(lines, lineIndex, rowIndex);
-                    total += numbers?.Sum() ?? 0;
+
+                    // Engine
+                    if (rowChar.Equals('*') && numbers.Count() == 2)
+                    {
+                        total += numbers[0] * numbers[1];
+                    }
                 }
                 rowIndex++;
             }
@@ -28,7 +33,7 @@ public class Part1
         }
 
 
-        return $"Part 1: {total}";
+        return $"Part 2: {total}";
     }
 
     private static List<int> findNumbersAround(string[] lines, int lineIndex, int rowIndex)
